@@ -14,52 +14,49 @@ import java.util.List;
  * @author Dito
  */
 public class TituloServicio {
-    
+
     private List<Titulo> titulos = BaseDeDatos.getInstancia().getTitulos();
-    
-    public List<Titulo> getTitulos(){
+
+    public List<Titulo> getTitulos() {
         return titulos;
     }
-    
-    public Titulo getTitulo(int id){
-        for(Titulo titulo : titulos){
-            if(titulo.getId().equals(id)){
+
+    public Titulo getTitulo(String id) {
+        for (Titulo titulo : titulos) {
+            if (titulo.getId().equals(id)) {
                 return titulo;
             }
         }
         return null;
     }
-    
-    public Titulo addTitulo(Titulo titulo){
+
+    public Titulo addTitulo(Titulo titulo) {
         titulos.add(titulo);
         return titulo;
     }
-    
-    public Titulo updateTitulo(Titulo titulo){
+
+    public Titulo updateTitulo(Titulo titulo) {
         int posicion = getPosicion(titulo.getId());
-        try{
+        try {
             titulos.set(posicion, titulo);
         } catch (IndexOutOfBoundsException ex) {
             return null;
         }
         return titulo;
     }
-    
-    private int getPosicion(String id){
+
+    private int getPosicion(String id) {
         for (int i = 0; i < titulos.size(); i++) {
-            if(titulos.get(i).getId().equals(id)){
+            if (titulos.get(i).getId().equals(id)) {
                 return i;
             }
         }
         return -1;
     }
-    
-    public void deleteTitulo(String id){
+
+    public void deleteTitulo(String id) {
         int posicion = getPosicion(id);
         titulos.remove(posicion);
     }
-    
-  
-    
-    
+
 }
