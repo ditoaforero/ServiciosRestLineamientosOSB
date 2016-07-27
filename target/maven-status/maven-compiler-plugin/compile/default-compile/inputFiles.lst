@@ -1,6 +1,8 @@
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\rest\Aplicacion.java
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\servicio\TituloServicio.java
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\modelo\Autor.java
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\dao\BaseDeDatos.java
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\modelo\Titulo.java
-C:\Users\Dito\Documents\NetBeansProjects\ServiciosRestLineamientosOSB\src\main\java\co\com\itac\recursos\TituloRecurso.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/modelo/Titulo.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/dao/BaseDeDatos.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/servicio/TituloServicio.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/modelo/Copia.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/recursos/TituloRecurso.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/servicio/CopiaServicio.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/modelo/Autor.java
+/home/eduardo-arevalo/GitRepository/ServiciosRestLineamientosOSB/src/main/java/co/com/itac/rest/Aplicacion.java
