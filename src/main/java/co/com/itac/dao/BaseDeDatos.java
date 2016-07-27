@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author Dito
+ * @author eduardo-arevalo
  */
 public final class BaseDeDatos {
 

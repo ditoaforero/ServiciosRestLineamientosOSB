@@ -13,6 +13,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -21,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Dito
+ * @author eduardo-arevalo
  */
 @Path("/Titulos")
 public class TituloRecurso {
@@ -34,6 +35,13 @@ public class TituloRecurso {
     public List<Titulo> getTitulos(@QueryParam("id") String id, @QueryParam("nombre") String nombre, @QueryParam("descripcion") String descripcion, @QueryParam("keywords") List<String> keywords, @QueryParam("autores") String autores) {
         return tituloServicio.getTitulos();
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Titulo getTitulo(@PathParam("id") String id) {
+        return tituloServicio.getTitulo(id);
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,13 +49,15 @@ public class TituloRecurso {
     public Titulo addTitulo(Titulo titulo) {
         return tituloServicio.addTitulo(titulo);
     }
-
-    @GET
+    
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
-    public Titulo getTitulo(@PathParam("id") String id) {
-        return tituloServicio.getTitulo(id);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Titulo updateTitulo(Titulo titulo) {
+        return tituloServicio.updateTitulo(titulo);
     }
+
+    
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -61,6 +71,22 @@ public class TituloRecurso {
     @Path("/{id}/Copias/{idCopia}")
     public Copia getCopia(@PathParam("idCopia") String id) {
         return copiaServicio.getCopia(id);
+    }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}/Copias")
+    public Copia addCopia(Copia copia) {
+        return copiaServicio.addCopia(copia);
+    }
+    
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}/Copias")
+    public Copia updateCopia(Copia copia){
+        return copiaServicio.updateCopia(copia);
     }
 
 }

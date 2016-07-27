@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Dito
+ * @author eduardo-arevalo
  */
 public class TituloServicio {
 
@@ -31,6 +31,8 @@ public class TituloServicio {
     }
 
     public Titulo addTitulo(Titulo titulo) {
+        String id = String.valueOf(titulos.size()+1);
+        titulo.setId(id);
         titulos.add(titulo);
         return titulo;
     }

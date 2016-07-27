@@ -7,7 +7,7 @@ package co.com.itac.modelo;
 
 /**
  *
- * @author Dito
+ * @author eduardo-arevalo
  */
 public class Autor {
     

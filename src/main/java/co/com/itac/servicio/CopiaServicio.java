@@ -31,6 +31,8 @@ public class CopiaServicio {
     }
 
     public Copia addCopia(Copia copia) {
+        String id = String.valueOf(copias.size()+1);
+        copia.setId(id);
         copias.add(copia);
         return copia;
     }

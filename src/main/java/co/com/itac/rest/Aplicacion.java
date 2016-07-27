@@ -10,7 +10,7 @@ import javax.ws.rs.core.Application;
 
 /**
  *
- * @author Dito
+ * @author eduardo-arevalo
  */
 @ApplicationPath("libreria")
 public class Aplicacion extends Application{
