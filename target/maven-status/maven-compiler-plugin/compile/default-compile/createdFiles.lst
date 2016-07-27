@@ -1,0 +1,6 @@
+co\com\itac\modelo\Titulo.class
+co\com\itac\rest\Aplicacion.class
+co\com\itac\dao\BaseDeDatos.class
+co\com\itac\recursos\TituloRecurso.class
+co\com\itac\servicio\TituloServicio.class
+co\com\itac\modelo\Autor.class
