@@ -16,6 +16,7 @@ import java.util.List;
 public class TituloServicio {
 
     private List<Titulo> titulos = BaseDeDatos.getInstancia().getTitulos();
+    
 
     public List<Titulo> getTitulos() {
         return titulos;
@@ -31,20 +32,41 @@ public class TituloServicio {
     }
 
     public Titulo addTitulo(Titulo titulo) {
-        String id = String.valueOf(titulos.size()+1);
+        String id = String.valueOf(titulos.size() + 1);
         titulo.setId(id);
         titulos.add(titulo);
         return titulo;
     }
 
-    public Titulo updateTitulo(Titulo titulo) {
-        int posicion = getPosicion(titulo.getId());
+    public Titulo updateTitulo(String idTitulo, Titulo tituloParam) {
+        Titulo titulo = getTitulo(idTitulo);
+        if (titulo == null) {
+            return null;
+        }
+        int posicion = getPosicion(idTitulo);
         try {
+            titulo = updateCamposTitulo(tituloParam, titulo);
             titulos.set(posicion, titulo);
+            return titulo;
         } catch (IndexOutOfBoundsException ex) {
             return null;
         }
-        return titulo;
+    }
+
+    private Titulo updateCamposTitulo(Titulo tituloOrigen, Titulo tituloDestino) {
+        if (tituloOrigen.getDescripcion() != null) {
+            tituloDestino.setDescripcion(tituloOrigen.getDescripcion());
+        }
+        if (tituloOrigen.getAutores() != null) {
+            tituloDestino.setAutores(tituloOrigen.getAutores());
+        }
+        if (tituloOrigen.getKeywords() != null) {
+            tituloDestino.setKeywords(tituloOrigen.getKeywords());
+        }
+        if (tituloOrigen.getNombre() != null) {
+            tituloDestino.setNombre(tituloOrigen.getNombre());
+        }
+        return tituloDestino;
     }
 
     private int getPosicion(String id) {
@@ -56,12 +78,12 @@ public class TituloServicio {
         return -1;
     }
 
-    public void deleteTitulo(String id) {
-        int posicion = getPosicion(id);
+    public void deleteTitulo(String idTitulo) {
+        int posicion = getPosicion(idTitulo);
         titulos.remove(posicion);
     }
     
-    
+
     public boolean existsTitulo(String id) {
         for (Titulo titulo : titulos) {
             if (titulo.getId().equals(id)) {
