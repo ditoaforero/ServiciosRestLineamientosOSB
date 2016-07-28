@@ -72,24 +72,24 @@ public class TituloRecurso {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{idTitulo}/Copias/{idCopia}")
-    public Copia getCopia(@PathParam("idCopia") String id) {
-        return copiaServicio.getCopia(id);
+    public Copia getCopia(@PathParam("idTitulo") String idTitulo, @PathParam("idCopia") String idCopia) {
+        return copiaServicio.getCopia(idTitulo, idCopia);
     }
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{idTitulo}/Copias")
-    public Copia addCopia(Copia copia, @PathParam("idTitulo") String idTitulo) {
-        return copiaServicio.addCopia(copia, idTitulo);
+    public Copia addCopia(@PathParam("idTitulo") String idTitulo, Copia copia) {
+        return copiaServicio.addCopia(idTitulo, copia);
     }
     
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}/Copias")
-    public Copia updateCopia(Copia copia){
-        return copiaServicio.updateCopia(copia);
+    public Copia updateCopia(@PathParam("idTitulo") String idTitulo, Copia copia){
+        return copiaServicio.updateCopia(idTitulo, copia);
     }
     
     private boolean esVacio(String parametro){

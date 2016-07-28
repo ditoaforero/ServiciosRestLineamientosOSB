@@ -20,9 +20,6 @@ public class CopiaServicio {
     private TituloServicio tituloServicio = new TituloServicio();
 
     public List<Copia> getCopias(String idTitulo) {
-        if(!tituloServicio.existsTitulo(idTitulo)){
-            return null;
-        }
         List<Copia> respuestaCopias = new ArrayList();
         for (Copia copia : copias) {
             if (copia.getIdTitulo().equals(idTitulo)) {
@@ -32,16 +29,16 @@ public class CopiaServicio {
         return respuestaCopias;
     }
 
-    public Copia getCopia(String id) {
+    public Copia getCopia(String idTitulo, String id) {
         for (Copia copia : copias) {
-            if (copia.getId().equals(id)) {
+            if (copia.getIdTitulo().equals(idTitulo) && copia.getId().equals(id)) {
                 return copia;
             }
         }
         return null;
     }
 
-    public Copia addCopia(Copia copia, String idTitulo) {
+    public Copia addCopia(String idTitulo, Copia copia) {
         if(!tituloServicio.existsTitulo(idTitulo)){
             return null;
         }
@@ -52,8 +49,8 @@ public class CopiaServicio {
         return copia;
     }
 
-    public Copia updateCopia(Copia copia) {
-        int posicion = getPosicion(copia.getId());
+    public Copia updateCopia(String idTitulo, Copia copia) {
+        int posicion = getPosicion(idTitulo, copia.getId());
         try {
             copias.set(posicion, copia);
         } catch (IndexOutOfBoundsException ex) {
@@ -62,17 +59,18 @@ public class CopiaServicio {
         return copia;
     }
 
-    private int getPosicion(String id) {
+    private int getPosicion(String idTitulo, String id) {
         for (int i = 0; i < copias.size(); i++) {
-            if (copias.get(i).getId().equals(id)) {
+            Copia copia = copias.get(i);
+            if (copia.getIdTitulo().equals(idTitulo) && copia.getId().equals(id)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public void deleteCopia(String id) {
-        int posicion = getPosicion(id);
+    public void deleteCopia(String idTitulo, String id) {
+        int posicion = getPosicion(idTitulo, id);
         copias.remove(posicion);
     }
 
