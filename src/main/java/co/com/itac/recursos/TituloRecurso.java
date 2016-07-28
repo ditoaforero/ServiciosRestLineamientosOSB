@@ -33,6 +33,9 @@ public class TituloRecurso {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Titulo> getTitulos(@QueryParam("id") String id, @QueryParam("nombre") String nombre, @QueryParam("descripcion") String descripcion, @QueryParam("keywords") List<String> keywords, @QueryParam("autores") String autores) {
+        if(esVacio(id) &&  esVacio(nombre) &&  esVacio(descripcion) && esVacio(keywords) && esVacio(autores)){
+            return null;
+        }
         return tituloServicio.getTitulos();
     }
     
@@ -61,14 +64,14 @@ public class TituloRecurso {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}/Copias")
-    public List<Copia> getCopias(@QueryParam("id") String id, @QueryParam("editorial") String editorial, @QueryParam("anho") String anho, @QueryParam("formato") String formato, @QueryParam("edicion") String edicion, @QueryParam("introduccion") String introduccion, @QueryParam("esConsultaGeneral") boolean esConsultaGeneral, @QueryParam("ubicacion") String ubicacion, @QueryParam("estado") String estado, @QueryParam("comentario") String comentario) {
-        return copiaServicio.getCopias();
+    @Path("/{idTitulo}/Copias")
+    public List<Copia> getCopias(@PathParam("idTitulo") String idTitulo, @QueryParam("id") String id, @QueryParam("editorial") String editorial, @QueryParam("anho") String anho, @QueryParam("formato") String formato, @QueryParam("edicion") String edicion, @QueryParam("introduccion") String introduccion, @QueryParam("esConsultaGeneral") boolean esConsultaGeneral, @QueryParam("ubicacion") String ubicacion, @QueryParam("estado") String estado, @QueryParam("comentario") String comentario) {
+        return copiaServicio.getCopias(idTitulo);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{id}/Copias/{idCopia}")
+    @Path("/{idTitulo}/Copias/{idCopia}")
     public Copia getCopia(@PathParam("idCopia") String id) {
         return copiaServicio.getCopia(id);
     }
@@ -76,9 +79,9 @@ public class TituloRecurso {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}/Copias")
-    public Copia addCopia(Copia copia) {
-        return copiaServicio.addCopia(copia);
+    @Path("/{idTitulo}/Copias")
+    public Copia addCopia(Copia copia, @PathParam("idTitulo") String idTitulo) {
+        return copiaServicio.addCopia(copia, idTitulo);
     }
     
     @PUT
@@ -88,5 +91,14 @@ public class TituloRecurso {
     public Copia updateCopia(Copia copia){
         return copiaServicio.updateCopia(copia);
     }
+    
+    private boolean esVacio(String parametro){
+        return (parametro==null || parametro.trim().equals(""));
+    }
+    
+    private boolean esVacio(List<String> parametro){
+        return (parametro==null || parametro.isEmpty());
+    }
+    
 
 }

@@ -60,5 +60,15 @@ public class TituloServicio {
         int posicion = getPosicion(id);
         titulos.remove(posicion);
     }
+    
+    
+    public boolean existsTitulo(String id) {
+        for (Titulo titulo : titulos) {
+            if (titulo.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

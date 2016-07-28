@@ -7,6 +7,7 @@ package co.com.itac.servicio;
 
 import co.com.itac.dao.BaseDeDatos;
 import co.com.itac.modelo.Copia;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,19 @@ import java.util.List;
 public class CopiaServicio {
 
     private List<Copia> copias = BaseDeDatos.getInstancia().getCopias();
+    private TituloServicio tituloServicio = new TituloServicio();
 
-    public List<Copia> getCopias() {
-        return copias;
+    public List<Copia> getCopias(String idTitulo) {
+        if(!tituloServicio.existsTitulo(idTitulo)){
+            return null;
+        }
+        List<Copia> respuestaCopias = new ArrayList();
+        for (Copia copia : copias) {
+            if (copia.getIdTitulo().equals(idTitulo)) {
+                respuestaCopias.add(copia);
+            }
+        }
+        return respuestaCopias;
     }
 
     public Copia getCopia(String id) {
@@ -30,9 +41,13 @@ public class CopiaServicio {
         return null;
     }
 
-    public Copia addCopia(Copia copia) {
+    public Copia addCopia(Copia copia, String idTitulo) {
+        if(!tituloServicio.existsTitulo(idTitulo)){
+            return null;
+        }
         String id = String.valueOf(copias.size()+1);
         copia.setId(id);
+        copia.setIdTitulo(idTitulo);
         copias.add(copia);
         return copia;
     }
